@@ -9,7 +9,7 @@ How to find the union and intersection of words in two strings NLP.  Keywords: s
 
              1. Datastep and FCMP
              2. HASH by Bartosz Jablonski (need help with adding union)
-             2.5 Bartosz Jablonski (recent addition - see end of message
+             2.5 Bartosz Jablonski (recent addition - see end of message)
              3. R intersect and union
              4. Datastep view and proc sql (just intersect)
              5. Python (union and intersect - slightly different input)
