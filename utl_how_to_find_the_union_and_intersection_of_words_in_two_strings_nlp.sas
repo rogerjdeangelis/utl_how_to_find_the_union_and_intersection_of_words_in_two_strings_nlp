@@ -6,10 +6,12 @@ How to find the union and intersection of words in two strings NLP
 
          1. Datastep and FCMP
          2. HASH by Bartosz Jablonski (need help with adding union)
+         2.5 Bartosz Jablonski (recent addition - see end of message)
          3. R intersect and union
          4. Datastep view and proc sql (just intersect)
          5. Python (union and intersect - slightly different input)
-
+         5.5 Rick's recent addition Rick Wicklin rick.wicklin@sas.com
+         
     FCMP Subroutine on end
 
 
@@ -279,6 +281,40 @@ Subroutine utl_pop(string $,word $,action $);
     end;
 endsub;
 run;quit;
+
+
+*____  _      _
+|  _ \(_) ___| | __
+| |_) | |/ __| |/ /
+|  _ <| | (__|   <
+|_| \_\_|\___|_|\_\
+
+;
+
+For a discussion of how to break a sentence into individual words in SAS, see
+https://blogs.sas.com/content/iml/2016/07/11/break-sentence-into-words-sas.html
+
+The SAS/IML solution is almost identical to the R solution, except it uses the familiar COUNTW and SCAN functions.
+Also the UNION function in IML returns the results in sorted order.
+
+proc iml;
+a = "to be or not to be";
+b = "2 b or not 2 b";
+delims = ' ,.!';
+a = scan(a, 1:countw(a, delims), delims);
+b = scan(b, 1:countw(b, delims), delims);
+intersect = xsect(a,b);
+union = union(a,b);
+print intersect, union;
+
+
+Rick Wicklin
+Statistical programming blog: http://blogs.sas.com/content/iml
+
+Rick Wicklin rick.wicklin@sas.com
+
+
+
 
 
 
