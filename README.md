@@ -9,6 +9,7 @@ How to find the union and intersection of words in two strings NLP.  Keywords: s
 
              1. Datastep and FCMP
              2. HASH by Bartosz Jablonski (need help with adding union)
+             2.5 Bartosz Jablonski (recent addition - see end of message
              3. R intersect and union
              4. Datastep view and proc sql (just intersect)
              5. Python (union and intersect - slightly different input)
@@ -282,4 +283,88 @@ How to find the union and intersection of words in two strings NLP.  Keywords: s
         end;
     endsub;
     run;quit;
+    
+     ____             _
+    | __ )  __ _ _ __| |_ ___  ___ ____
+    |  _ \ / _` | '__| __/ _ \/ __|_  /
+    | |_) | (_| | |  | || (_) \__ \/ /
+    |____/ \__,_|_|   \__\___/|___/___|
+
+    ;
+
+    data have;
+       length str1 str2 $200;
+       str1="to be or not to be";
+       str2="2 b or not 2 b";
+       output;
+       str1="every good deed results in a better person best";
+       str2="good better best never let it rest until the good is better and better is best";
+       output;
+       str1="1 2 3";
+       str2="3 4 5";
+       output;
+       str1="A B C";
+       str2="a b c";
+       output;
+       str1="x y z";
+       str2="x y z";
+       output;
+    run;quit;
+
+
+    data want;
+
+    dcl hash h (ordered: "a") ;
+      h.definekey ("word") ;
+      h.definedata ("word", "count") ;
+      h.definedone ();
+
+    do until(eof);
+    h.clear();
+
+    set have end = eof;
+
+    count = 0;
+    countw_str1 = countw(str1);
+    do i=1 to countw_str1;
+     word = scan(str1, i);
+     if h.find() then h.add();
+    end;
+
+    countw_str2 = countw(str2);
+    do i=1 to countw_str2;
+     word = scan(str2, i);
+     if h.find() = 0 then do; count = count + 1;                     h.replace(); end;
+                     else do; count = -sum(countw_str1,countw_str2); h.add();     end;
+                     /* it could be done like that: "count = .;"
+                        but then you have: "NOTE: Missing values were generated..." in the log
+                        and it is a ugly one ;-)
+                     */
+    end;
+
+
+    declare hiter ih('h');
+    count_of_common=0; length common_words $ 200; common_words = "";
+    count_of_union=0;  length union_words $ 200; union_words = "";
+
+    _rc_ = ih.first();
+    do while(_rc_ = 0);
+        if count>0 then do;
+                        common_words = catx(" ", common_words, word);
+                        count_of_common +1;
+                      end;
+                      union_words = catx(" ", union_words, word);
+                      count_of_union +1;
+        _rc_ = ih.next();
+    end;
+    output;
+
+    /**/
+    end;
+
+    stop;
+    keep str1 str2 common_words count_of_common union_words count_of_union;
+    run;
+
+
 
