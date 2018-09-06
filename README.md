@@ -1,7 +1,7 @@
 # utl_how_to_find_the_union_and_intersection_of_words_in_two_strings_nlp
 How to find the union and intersection of words in two strings NLP.  Keywords: sas sql join merge big data analytics macros oracle teradata mysql sas communities stackoverflow statistics artificial inteligence AI Python R Java Javascript WPS Matlab SPSS Scala Perl C C# Excel MS Access JSON graphics maps NLP natural language processing machine learning igraph DOSUBL DOW loop stackoverflow SAS community.
 
-    How to find the union and intersection of words in two strings NLP
+    How to find the union and intersection of words in two strings NLP.
 
        Maybe Python is the best language for this Natural Language Problem?
 
