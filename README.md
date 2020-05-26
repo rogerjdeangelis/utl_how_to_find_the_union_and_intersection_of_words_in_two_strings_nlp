@@ -13,7 +13,7 @@ How to find the union and intersection of words in two strings NLP.  Keywords: s
              3. R intersect and union
              4. Datastep view and proc sql (just intersect)
              5. Python (union and intersect - slightly different input)
-             5.5 Rick's recent addition Rick Wicklin rick.wicklin@sas.com
+             6.5 Rick's recent addition Rick Wicklin rick.wicklin@sas.com
              
         FCMP Subroutine on end
 
